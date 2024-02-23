@@ -1,0 +1,218 @@
+<app-header></app-header>
+<br>
+<div>
+    <h1>Administración de productos de limpieza</h1>
+    <br>
+    <form [formGroup]="registerForm" (ngSubmit)="enviarDatos()">
+        <p-card header="Registrar producto" [style]="{width:'360px'}">
+            <div class="field">
+                <label for="rqName">Nombre del producto</label>
+                <input
+                type="text"
+                pInputText
+                formControlName = "rqName"
+                class="w-full"
+                name="rqNombre"
+                placeholder="Nombre"
+                >
+                <small *ngIf="rqName.invalid" class="block p-error">
+                    <div *ngIf="rqName.errors?.['required']">Ingrese el nombre</div>
+                </small>
+            </div>
+            <div class="field">
+                <label for="rqDescription">Descripcion del producto</label>
+                <input
+                type="text"
+                pInputText
+                formControlName = "rqDescription"
+                class="w-full"
+                placeholder="Descripcion"
+                >
+                <small *ngIf="rqDescription.invalid" class="block p-error">
+                    <div *ngIf="rqDescription.errors?.['required']">Ingrese una descripcion</div>
+                </small>
+            </div>
+            <div class="field">
+                <label for="rqStock">Cantidad en stock</label>
+                <input
+                type="text"
+                pInputText
+                formControlName = "rqStock"
+                class="w-full"
+                placeholder="Cantidad"
+                >
+                <small *ngIf="rqStock.invalid" class="block p-error">
+                    <div *ngIf="rqStock.errors?.['required']">Ingrese una cantidad</div>
+                </small>
+            </div>
+            <div class="field">
+                <label for="rqType">Tipo de producto</label>
+                <input
+                type="text"
+                pInputText
+                formControlName = "rqType"
+                class="w-full"
+                placeholder="Tipo"
+                >
+                <small *ngIf="rqType.invalid" class="block p-error">
+                    <div *ngIf="rqType.errors?.['required']">Ingrese una cantidad</div>
+                </small>
+            </div>
+            <div class="field">
+                <label for="rqPrice">Precios del producto </label>
+                <input
+                type="text"
+                pInputText
+                formControlName = "rqPrice"
+                class="w-full"
+                placeholder="Precio"
+                >
+                <small *ngIf="rqPrice.invalid" class="block p-error">
+                    <div *ngIf="rqPrice.errors?.['required']">Ingrese una cantidad</div>
+                </small>
+            </div>
+            <div class="field">
+                <label for="rqProvaider">Proveedor</label>
+                <input
+                type="text"
+                pInputText
+                formControlName = "rqProvaider"
+                class="w-full"
+                placeholder="Proveedor"
+                >
+                <small *ngIf="rqProvaider.invalid" class="block p-error">
+                    <div *ngIf="rqProvaider.errors?.['required']">Ingrese una cantidad</div>
+                </small>
+            </div>
+            <div class="field">
+                <label for="rqStatus">Estatus del producto</label>
+                <input
+                type="text"
+                pInputText
+                formControlName = "rqStatus"
+                class="w-full"
+                placeholder="Status"
+                >
+                <small *ngIf="rqStatus.invalid" class="block p-error">
+                    <div *ngIf="rqStatus.errors?.['required']">Ingrese una cantidad</div>
+                </small>
+            </div>
+            <p-button label="Guardar"
+                styleClass="w-full" 
+                [disabled]="registerForm.invalid" 
+                type="submit">
+            </p-button>
+        </p-card>
+    </form>
+    <p-toast></p-toast>
+
+<p-table [value]="products" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:20%">ID</th>
+            <th style="width:20%">Nombre</th>
+            <th style="width:20%">Descripcion</th>
+            <th style="width:20%">Stock</th>
+            <th style="width:20%">Tipo</th>
+            <th style="width:20%">Precio</th>
+            <th style="width:20%">Proveedor</th>
+            <th style="width:20%">Existencia</th>
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="product">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.id">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.id}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.name" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.description" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.description}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.stock" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.stock}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.type" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.type}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.price" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.price}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.provaider" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.provaider}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.status" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.status}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <div class="flex align-items-center justify-content-center gap-2">
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+</div>
+<br>
+<app-footer></app-footer>

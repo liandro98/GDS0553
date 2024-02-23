@@ -1,0 +1,91 @@
+<form [formGroup]="registerForm" (ngSubmit)="enviarRegistro()">
+    <p-card header="Registrar miembro" [style]="{width:'360px'}">
+        <div class="field">
+            <label for="fullName">Nombre completo</label>
+            <input 
+                type="text"
+                pInputText
+                formControlName = "fullName"
+                class="w-full"
+                name="fullName"
+                placeholder="Nombre Completo"
+            >
+        </div>
+        <small *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)" class="block p-error">
+            <div *ngIf="fullName.errors?.['required']">Nombre es requerido</div>
+            <div *ngIf="fullName.errors?.['pattern']">Nombre deberia ser valido</div>
+        </small>
+        <div class="field">
+            <label for="email">
+                Correo Electronico
+            </label>
+            <input
+                type="text"
+                pInputText
+                formControlName="email"
+                class="w-full"
+                name="email"
+                placeholder="Teclea tu correo Electronico"
+            /> 
+        </div>
+        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+            <div *ngIf="email.errors?.['required']">Email es requerido</div>
+            <div *ngIf="email.errors?.['email']">Email debera ser valido</div>
+        </small>
+        <div class="field">
+            <label for="cpassword">
+                Contraseña
+            </label>
+            <input
+                type="password"
+                pInputText
+                formControlName="password"
+                class="w-full"
+                name="password"
+                placeholder="Teclea tu contraseña"
+            /> 
+            <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
+                <div *ngIf="password.errors?.['required']">El password es requerido</div>
+                <div *ngIf="password.errors?.['pattern']">
+                  Ingrese una contraseña valida
+                </div>
+            </small>
+        </div>
+        <div class="field">
+            <label for="confirmPassword">Confirmar Contraseña</label>
+            <input 
+                type="password"
+                pInputText
+                formControlName = "confirmPassword"
+                class="w-full"
+                name="confirmPassword"
+                placeholder="Confirmar Contraseña"
+            />
+            <small
+                    *ngIf="confirmPassword.invalid &&
+                        (confirmPassword.dirty || confirmPassword.touched)"
+                    class="block p-error"
+                > 
+                <div *ngIf="confirmPassword.errors?.['required']">
+                    Confirmar Contraseña
+                </div>
+            </small>
+            <small
+                class="block p-error"
+                *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+            >
+            Contraseñas no coinciden
+            </small>
+        </div>
+        <p-button label="Registrar"
+         styleClass="w-full" 
+         [disabled]="registerForm.invalid" 
+         type="submit">
+        </p-button>
+
+        <div class="mt-2">
+            ¿Ya eres miembro? <a routerLink="/login">Ingresar</a>
+        </div>
+    </p-card>
+</form>
+

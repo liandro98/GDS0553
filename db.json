@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "fullName": "Miguel",
+      "email": "miguel@gmail.com",
+      "password": "Miguel04Espinos@",
+      "id": 1
+    }
+  ],
+  "productos": [
+    {
+      "name": "fabuloso",
+      "description": "potente aroma",
+      "stock": "30",
+      "type": "limpiador",
+      "price": "20",
+      "provaider": "Compañia de limpieza",
+      "status": "true",
+      "id": 1
+    }
+  ]
+}
