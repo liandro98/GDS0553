@@ -24,7 +24,8 @@ const routes: Routes = [
   },
   {
     path:'products',
-    component: ProductsComponent
+    component: ProductsComponent,
+    canActivate:[authGuard]
   },
   {
     path:'header',

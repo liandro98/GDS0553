@@ -2,9 +2,9 @@ export interface Producto {
     id:string;
     name: string;
     description:string;
-    Stock:string; 
+    stock:string; 
     type:string;
     price:string;
     provaider:string;
-    status:boolean;
+    status:string;
 }

@@ -10,89 +10,120 @@ import { Message, MessageService } from 'primeng/api';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  products!: Producto[];
-
+  products: Producto[] = [];
   clonedProducts: { [s: string]: Producto } = {};
 
-  constructor(private producto: ProductoService, private fb : FormBuilder, private messageService: MessageService){}
+  constructor(
+    private producto: ProductoService,
+    private fb: FormBuilder,
+    private messageService: MessageService
+  ) {}
 
   registerForm = this.fb.group({
-    rqName:['', Validators.required],
-    rqDescription:['', Validators.required],
-    rqStock:['', Validators.required],
-    rqType:['', Validators.required],
-    rqPrice:['', Validators.required],
-    rqProvaider:['', Validators.required],
-    rqStatus:['', Validators.required]
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    stock: ['', Validators.required],
+    type: ['', Validators.required],
+    price: ['', Validators.required],
+    provaider: ['', Validators.required],
+    status: ['', Validators.required]
   });
 
-  ngOnInit(){
+  ngOnInit() {
+    this.loadProducts();
+  }
+
+  loadProducts() {
     this.producto.getProducts().subscribe(
       response => {
-        console.log(response)
-        this.products = response
+        this.products = response;
       },
-      error => console.log(error)
-    )
+      error => {
+        console.error('Error al cargar:', error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Falla en la carga de los productos' });
+      }
+    );
   }
 
-  get rqName(){
-    return this.registerForm.controls['rqName'];
+  get name() {
+    return this.registerForm.controls['name'];
   }
 
-  get rqDescription(){
-    return this.registerForm.controls['rqDescription'];
+  get description() {
+    return this.registerForm.controls['description'];
   }
 
-  get rqStock(){
-    return this.registerForm.controls['rqStock'];
+  get stock() {
+    return this.registerForm.controls['stock'];
   }
 
-  get rqType(){
-    return this.registerForm.controls['rqType'];
+  get type() {
+    return this.registerForm.controls['type'];
   }
 
-  get rqPrice(){
-    return this.registerForm.controls['rqPrice'];
+  get price() {
+    return this.registerForm.controls['price'];
   }
 
-  get rqProvaider(){
-    return this.registerForm.controls['rqProvaider'];
+  get provaider() {
+    return this.registerForm.controls['provaider'];
   }
 
-  get rqStatus(){
-    return this.registerForm.controls['rqStatus']
+  get status() {
+    return this.registerForm.controls['status'];
   }
 
   onRowEditInit(product: Producto) {
-        this.clonedProducts[product.id as string] = { ...product };
-    }
+    this.clonedProducts[product.id as string] = { ...product };
+  }
 
-    onRowEditSave(product: Producto) {
+  onRowEditSave(product: Producto) {
+    delete this.clonedProducts[product.id as string];
 
-            delete this.clonedProducts[product.id as string];
+    this.producto.updateProduct(product).subscribe(
+      response => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Producto actuallizado' });
+      },
+      error => {
+        console.error('Error updating product:', error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Falla al cargar el producto' });
+      }
+    );
+  }
 
-            this.producto.updateProduct(product)
+  onRowEditCancel(product: Producto, index: number) {
+    this.products[index] = this.clonedProducts[product.id as string];
+    delete this.clonedProducts[product.id as string];
+  }
 
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product is updated' });
-        
-    }
-
-    onRowEditCancel(product: Producto, index: number) {
-        this.products[index] = this.clonedProducts[product.id as string];
-        delete this.clonedProducts[product.id as string];
-    }
-
-  enviarDatos(){
-    const data = {...this.registerForm.value};
+  enviarDatos() {
+    const data = { ...this.registerForm.value };
 
     this.producto.registerProduct(data as Producto).subscribe(
       response => {
-        console.log(response)
+        this.loadProducts();
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Producto registrado' });
       },
-      error => console.log(error)
-    )
+      error => {
+        console.error('Error registering product:', error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo registrar el producto' });
+      }
+    );
   }
 
+  deleteProduct(productId: string) {
+    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+      this.producto.deleteProduct(productId).subscribe(
+        () => {
+          this.products = this.products.filter(product => product.id !== productId);
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Producto eliminado exitosamente' });
+        },
+        error => {
+          console.error('Error al eliminar el producto:', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el producto' });
+        }
+      );
+    }
+  }
 
 }

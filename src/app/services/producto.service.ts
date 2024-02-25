@@ -7,33 +7,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductoService {
-  public producto!: [
-    id: string,
-    Name: string,
-    Description: string,
-    Stock: string,
-    type: string,
-    price: string,
-    provaider: string,
-    status: boolean];
-
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:3000/productos';
 
   constructor(private http: HttpClient) { }
 
-  registerProduct(product : Producto){
-    return this.http.post(`${this.baseUrl}/productos`,product);
+  registerProduct(product: Producto) { 
+    return this.http.post(this.baseUrl, product); 
   }
 
   getProducts(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.baseUrl}/productos`);
+    return this.http.get<Producto[]>(this.baseUrl);
   }
-  
+
   updateProduct(producto: Producto): Observable<Producto> {
-    const url = `${this.baseUrl}/productos/${producto.id}`; // URL del producto específico a actualizar
-    console.log(url)
+    const url = `${this.baseUrl}/${producto.id}`;
     return this.http.put<Producto>(url, producto);
   }
-  
 
+  deleteProduct(productId: string): Observable<any> {
+    const url = `${this.baseUrl}/${productId}`;
+    return this.http.delete(url);
+  }
+  
 }

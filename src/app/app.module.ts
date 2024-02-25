@@ -21,6 +21,7 @@ import { PanelModule } from 'primeng/panel';
 import { MenubarModule } from 'primeng/menubar';
 import { ProductsComponent } from './componentes/products/products.component';
 import { TableModule } from 'primeng/table';
+import { SplitterModule } from 'primeng/splitter';
 
 
 
@@ -45,7 +46,8 @@ import { TableModule } from 'primeng/table';
     PanelModule,
     MenubarModule,
     TableModule,
-    FormsModule
+    FormsModule,
+    SplitterModule
   ],
   providers: [
     MessageService,

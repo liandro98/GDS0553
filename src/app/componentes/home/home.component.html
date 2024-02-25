@@ -1,10 +1,46 @@
 <app-header></app-header>
 <br>
+
 <div>
     <h1>Tienda de productos de limpieza</h1>
     <br>
-    <input>
-    <input>
+    <br>
+    <br>
+    <br>
+    <div class="card">
+        <p-splitter [style]="{ height: '650px' }" styleClass="mb-5">
+            <ng-template pTemplate>
+                <div class="col flex align-items-center justify-content-center">
+                    <p-card header="Fabuloso" subheader="Limpiador multiusos" [style]="{ width: '360px', heigth:'100' }">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="https://imgs.search.brave.com/TMczqAh5VbBl8UgNsucecbjSA0E7QwKgoc4MSLJmM2s/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/ZmFidWxvc28uY29t/L2NvbnRlbnQvZGFt/L2NwLXNpdGVzL2hv/bWUtY2FyZS9mYWJ1/bG9zby9wYWNrc2hv/dHMvY2Fyb3VzZWwt/aW1hZ2VzL2FudGli/YWN0ZXJpYWwtbGF2/ZW5kZXIvbmV3LWZh/YnVsb3NvLWFudGli/YWN0ZXJpYWwtbGF2/ZW5kZXItcHJvZHVj/dC5qcGc" />
+                        </ng-template>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, eveniet!
+                        </p>
+                    </p-card>
+                </div>
+            </ng-template>
+            <ng-template pTemplate>
+                <div class="col flex align-items-center justify-content-center">
+                    <p-card header="Cloralex" subheader="Blanqueador" [style]="{ width: '360px' }">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="https://imgs.search.brave.com/fV-Q1p0FPyTtKW2m3Cs9VjIqOwI3S38b9wQ4sF9Of9w/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pNS53/YWxtYXJ0aW1hZ2Vz/LmNvbS5teC9nci9p/bWFnZXMvcHJvZHVj/dC1pbWFnZXMvaW1n/X2xhcmdlLzAwMDAw/MDA3NTAwMDYyTC5q/cGc_b2RuSGVpZ2h0/PTM3MiZvZG5XaWR0/aD0zNzImb2RuQmc9/RkZGRkZG" />
+                        </ng-template>
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, quas!
+                        </p>
+                        <ng-template pTemplate="footer">
+                            
+                        </ng-template>
+                    </p-card>
+                </div>
+            </ng-template>
+        </p-splitter>
+    </div>
 </div>
+<br>
+<br>
+<br>
 <br>
 <app-footer></app-footer>

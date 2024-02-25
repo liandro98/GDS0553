@@ -12,9 +12,9 @@ export class HeaderComponent {
   constructor() {
     this.menuItems = [
       { label: 'Inicio', routerLink: '/home' },
-      { label: 'Acerca de', routerLink: '/about' },
-      { label: 'Productos', routerLink: '/products' },
-      { label: 'Contacto', routerLink: '/contact' }
+      { label: 'Produtos', routerLink: '/products' },
+      { label: 'Cambiar de usuario', routerLink: '/login' },
+      { label: 'Contacto', routerLink: '/home' }
     ];
   }
   

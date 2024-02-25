@@ -15,8 +15,18 @@
       "type": "limpiador",
       "price": "20",
       "provaider": "Compañia de limpieza",
-      "status": "true",
+      "status": "existe",
       "id": 1
+    },
+    {
+      "name": "clorox",
+      "description": "con este se mure la gente",
+      "stock": "100",
+      "type": "blanqueador",
+      "price": "50",
+      "provaider": "una maraca cualquiera",
+      "status": "existe",
+      "id": 2
     }
   ]
 }
