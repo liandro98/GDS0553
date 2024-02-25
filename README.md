@@ -1,4 +1,4 @@
-# Manula de configuración
+# Manual de configuración
 
 ## Descarga del repositorio
 
