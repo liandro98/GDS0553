@@ -21,4 +21,10 @@ Para levantar el proyecto necesitaremos de dos comandos en la raiz del proyecyo,
 2. Para levantar elk servidor JSON
 `json-server --watch db.json`
 
+Ahora el proyecto estará disponible en el puerto `http://localhost:4200/`
+
+### Usuario y contraseña predefinidos 
+email : miguel@gmail.com
+password : Miguel04Espinos@
+
 
