@@ -1,8 +1,6 @@
-#Manula de condiguración
+# Manula de condiguración
 
-##Descarga del repositorio
+## Descarga del repositorio
 
 Abrir el git bash en el directporio que se desea decargar 
-```
-test
-```
+
