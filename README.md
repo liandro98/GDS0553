@@ -1,4 +1,5 @@
-# Manual de configuración
+# MAEG-shop
+
 
 ## Descarga del repositorio
 
